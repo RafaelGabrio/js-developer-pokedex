@@ -22,8 +22,7 @@ header {
     transition:
       transform 0.3s ease,
       text-shadow 0.3s ease,
-      background-color .5s ease,
-      filter 0.3s ease;
+      background-color 0.1s ease;
     text-decoration: none;
     color: #fff;
   }
@@ -83,6 +82,7 @@ figure {
 }
 
 article#articlePokemonDetail {
+  position: relative;
   background-color: #fff;
   padding: 0.4rem 2rem;
   flex-grow: 1;
@@ -100,8 +100,8 @@ article#articlePokemonDetail {
 
 img#bokeballBackground {
   position: absolute;
-  top: 240px;
-  left: 5%;
+  top: -160px;
+  left: 0;
   height: 180px;
   z-index: 0;
   filter: opacity(0.2);
@@ -127,7 +127,6 @@ dd {
   font-weight: 600;
 }
 
-
 @media screen and (min-width: 576px) {
   article#articlePokemonDetail {
     width: 85%;
@@ -135,7 +134,12 @@ dd {
   }
 
   img#bokeballBackground {
-    left: 10%;
+    left: 25px;
+    height: 200px;
+  }
+
+  figure > img {
+    height: 230px;
   }
 }
 
@@ -152,7 +156,8 @@ dd {
   }
 
   img#bokeballBackground {
-    left: 20%;
+    left: 50px;
+    top: -200px;
     height: 218px;
   }
 
