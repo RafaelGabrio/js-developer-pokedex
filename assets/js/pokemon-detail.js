@@ -15,7 +15,7 @@ if (pokemonId) {
     const elementsHeader = convertPokemonDataToItensHeader(pokemon);
     const elementsArticle = convertPokemonDataToSections(pokemon);
     headerPokemonDetail.innerHTML += elementsHeader;
-    articlePokemonDetail.innerHTML = elementsArticle;
+    articlePokemonDetail.innerHTML += elementsArticle;
   });
 }
 

@@ -13,14 +13,29 @@ header {
   color: #fff;
 }
 
-nav#navItensPokemon {
+#navItensPokemon {
   margin: 1rem 0;
   padding: 1.3rem;
 
   a {
+    display: inline-block;
+    transition:
+      transform 0.3s ease,
+      text-shadow 0.3s ease,
+      background-color .5s ease,
+      filter 0.3s ease;
     text-decoration: none;
     color: #fff;
   }
+}
+
+#navItensPokemon a:hover {
+  transform: scale(1.1); /* O efeito de aumento que você queria */
+  padding: 5px 10px;
+  text-shadow: 0 1.5px 5px rgba(0 0 0 / 30%);
+  border-radius: 20px;
+  background-color: rgba(0 0 0 / 6%);
+  margin: -10px;
 }
 
 div#titlePokemon {
@@ -62,7 +77,8 @@ figure {
   img {
     margin-bottom: -45px;
     position: relative;
-    width: 320px;
+    height: 200px;
+    z-index: 10;
   }
 }
 
@@ -80,6 +96,15 @@ article#articlePokemonDetail {
   section {
     margin-top: 50px;
   }
+}
+
+img#bokeballBackground {
+  position: absolute;
+  top: 240px;
+  left: 5%;
+  height: 180px;
+  z-index: 0;
+  filter: opacity(0.2);
 }
 
 /* .pokemonAttributes * {
@@ -102,11 +127,37 @@ dd {
   font-weight: 600;
 }
 
+
+@media screen and (min-width: 576px) {
+  article#articlePokemonDetail {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  img#bokeballBackground {
+    left: 10%;
+  }
+}
+
 @media screen and (min-width: 992px) {
   .container {
     max-width: 992px;
     height: auto;
     margin: 0 auto;
     border-radius: 1rem;
+  }
+
+  figure > img {
+    height: 250px;
+  }
+
+  img#bokeballBackground {
+    left: 20%;
+    height: 218px;
+  }
+
+  article#articlePokemonDetail {
+    width: 90%;
+    margin: 0 auto;
   }
 }
