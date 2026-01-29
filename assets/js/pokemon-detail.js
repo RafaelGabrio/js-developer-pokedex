@@ -1,3 +1,5 @@
+import Util from './utils.js';
+
 const urlParams = new URLSearchParams(window.location.search);
 const pokemonId = urlParams.get("id");
 
@@ -7,16 +9,19 @@ const container = document.querySelector("#container");
 const body = document.querySelector("body");
 
 if (pokemonId) {
-  getPokemonDetail(pokemonId).then((pokemon) => {
-    //Adiciona a cor no fundo conforme o tipo
-    // container.classList.add(pokemon.type);
-    body.classList.add(pokemon.type);
+  Util.exibirLoading();
+  getPokemonDetail(pokemonId)
+    .then((pokemon) => {
+      //Adiciona a cor no fundo conforme o tipo
+      // container.classList.add(pokemon.type);
+      body.classList.add(pokemon.type);
 
-    const elementsHeader = convertPokemonDataToItensHeader(pokemon);
-    const elementsArticle = convertPokemonDataToSections(pokemon);
-    headerPokemonDetail.innerHTML += elementsHeader;
-    articlePokemonDetail.innerHTML += elementsArticle;
-  });
+      const elementsHeader = convertPokemonDataToItensHeader(pokemon);
+      const elementsArticle = convertPokemonDataToSections(pokemon);
+      headerPokemonDetail.innerHTML += elementsHeader;
+      articlePokemonDetail.innerHTML += elementsArticle;
+    })
+    .finally(() => Util.removerLoading());
 }
 
 function convertPokemonDataToItensHeader(pokemon) {
