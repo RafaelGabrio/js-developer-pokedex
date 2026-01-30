@@ -1,4 +1,4 @@
-import Util from './utils.js';
+import Util from "./utils.js";
 
 const pokemonList = document.getElementById("pokemonList");
 const loadMoreButton = document.getElementById("loadMoreButton");
@@ -27,14 +27,19 @@ function convertPokemonToLi(pokemon) {
 }
 
 function loadPokemonItens(offset, limit) {
-  Util.exibirLoading();
-  pokeApi
+  const minTimePromise = Util.delay(700);
+  const pokemonsPromise = pokeApi
     .getPokemons(offset, limit)
     .then((pokemons = []) => {
       const newHtml = pokemons.map(convertPokemonToLi).join("");
       pokemonList.innerHTML += newHtml;
-    })
-    .finally(() => Util.removerLoading());
+    });
+
+  Util.exibirLoading();
+
+  Promise.all([minTimePromise, pokemonsPromise]).finally(() =>
+    Util.removerLoading(),
+  );
 }
 
 loadPokemonItens(offset, limit);

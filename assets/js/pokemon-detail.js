@@ -1,4 +1,4 @@
-import Util from './utils.js';
+import Util from "./utils.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const pokemonId = urlParams.get("id");
@@ -10,18 +10,22 @@ const body = document.querySelector("body");
 
 if (pokemonId) {
   Util.exibirLoading();
-  getPokemonDetail(pokemonId)
-    .then((pokemon) => {
-      //Adiciona a cor no fundo conforme o tipo
-      // container.classList.add(pokemon.type);
-      body.classList.add(pokemon.type);
 
-      const elementsHeader = convertPokemonDataToItensHeader(pokemon);
-      const elementsArticle = convertPokemonDataToSections(pokemon);
-      headerPokemonDetail.innerHTML += elementsHeader;
-      articlePokemonDetail.innerHTML += elementsArticle;
-    })
-    .finally(() => Util.removerLoading());
+  const minTimePromise = Util.delay(800);
+  const pokemonDetailPromise = getPokemonDetail(pokemonId).then((pokemon) => {
+    //Adiciona a cor no fundo conforme o tipo
+    // container.classList.add(pokemon.type);
+    body.classList.add(pokemon.type);
+
+    const elementsHeader = convertPokemonDataToItensHeader(pokemon);
+    const elementsArticle = convertPokemonDataToSections(pokemon);
+    headerPokemonDetail.innerHTML += elementsHeader;
+    articlePokemonDetail.innerHTML += elementsArticle;
+  });
+
+  Promise.all([pokemonDetailPromise, minTimePromise]).finally(() =>
+    Util.removerLoading(),
+  );
 }
 
 function convertPokemonDataToItensHeader(pokemon) {
@@ -35,7 +39,7 @@ function convertPokemonDataToItensHeader(pokemon) {
                 ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join("")}
             </ol>
 
-            <figure>
+            <figure id="photoPokemon">
                 <img src="${pokemon.photo}" alt="img ${pokemon.name}">
             </figure>
             

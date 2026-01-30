@@ -68,7 +68,7 @@ div#titlePokemon {
   border-radius: 1rem;
 }
 
-figure {
+figure#photoPokemon {
   margin-top: 4rem;
   display: flex;
   justify-content: center;
@@ -138,7 +138,7 @@ dd {
     height: 200px;
   }
 
-  figure > img {
+  figure#photoPokemon > img {
     height: 230px;
   }
 }
@@ -151,7 +151,7 @@ dd {
     border-radius: 1rem;
   }
 
-  figure > img {
+  figure#photoPokemon > img {
     height: 250px;
   }
 
